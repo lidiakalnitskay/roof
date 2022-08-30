@@ -1,0 +1,28 @@
+@import '_zeroing.scss';
+@import '_ variables.scss';
+@import '_header.scss';
+@import '_first-screen.scss';
+@import '_popup.scss';
+@import '_popup-menu.scss';
+
+body{
+    font-family: 'Montserrat', sans-serif;
+    @include adaptiv-font (14,13);
+    font-weight: 400;
+    color: $black;
+}
+
+.wrapper {
+    background-image: url(/img/bg.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: auto;
+    z-index: -10;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+// https://adorable-puppy-29d275.netlify.app

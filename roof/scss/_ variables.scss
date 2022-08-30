@@ -1,0 +1,97 @@
+$black: #1C1C1C;
+$green:  #12C868;
+$greenHover: #21E27C;
+$orange: #F38120;
+$orangeHover: #FD9C49;
+$white: #FFFFFF;
+
+
+// Размеры экрана
+@mixin breakpoint($point) {
+	@if $point == minm {
+		@media (min-width: 768px) {@content;}
+	}
+	@if $point == min {
+		@media (min-width: 851px) {@content;}
+	}
+	@if $point == minx {
+		@media (min-width: 1100px) {@content;}
+	}
+	@if $point == xxxl {
+		@media (max-width: 1920px) {@content;}
+	}
+	@else if $point == xxl {
+		@media (max-width: 1520px) {@content;}
+	}
+	@else if $point == xl {
+		@media (max-width: 1280px) {@content;}
+	}
+	@else if $point == ll {
+		@media (max-width: 1100px) {@content;}
+	}
+	@else if $point == l {
+		@media (max-width: 1024px) {@content;}
+	}	
+	@else if $point == mm {
+		@media (max-width: 850px) {@content;}
+	}
+	@else if $point == m {
+		@media (max-width: 768px) {@content;}
+	}
+	@else if $point == ms {
+		@media (max-width: 720px) {@content;}
+	}
+	@else if $point == s {
+		@media (max-width: 600px) {@content;}
+	}	
+	@else if $point == ss {
+		@media (max-width: 563px) {@content;}
+	}
+	@else if $point == sx {
+		@media (max-width: 540px) {@content;}
+	}
+	@else if $point == xs {
+		@media (max-width: 480px) {@content;}
+	}
+	@else if $point == xxs {
+		@media (max-width: 390px) {@content;}
+	}
+	@else if $point == xxss {
+		@media (max-width: 384px) {@content;}
+	}
+	@else if $point == xxxs {
+		@media (max-width: 320px) {@content;}
+	}
+}
+
+// Адаптивный шрифт
+$maxWidth: 1920; //макетный размер 
+
+@mixin adaptiv-font ($pcSize, $mobSize) {
+	$addSize: $pcSize - $mobSize;
+	$maxWidth: $maxWidth - 320;
+	font-size: calc(#{$mobSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth}));
+}
+
+//Адаптивное свойство
+$maxWidthContainer: 1543;
+
+@mixin adaptiv-value ($property, $startSize, $minSize, $type){
+	$addSize: $startSize - $minSize;
+	@if $type==1 {
+		// Только если меньше контейнера
+		#{$property}: $startSize + px;
+		@media (max-width: #{$maxWidthContainer + px}) {
+			#{$property}: calc( #{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidthContainer - 320}));
+		} 
+	} @else if $type==2{
+		// Только если больше контейнера
+		#{$property}: $startSize + px;
+		@media (mix-width: #{$maxWidthContainer + px}) {
+			#{$property}: calc( #{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320}));
+		}		
+	} @else {
+		//Всегда 
+		#{$property}: calc( #{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320}));
+	}
+}
